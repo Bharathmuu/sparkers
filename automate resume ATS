@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOMATED RESUME ATS</title>
+    <script>
+        function openNewPage() {
+            window.open("bk.html", "_blank"); 
+        }
+    </script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("image2.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Container Styling */
+        .container {
+            background-image: url("image1.jpg");
+            background-size: cover;
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Header Styling */
+        h2, h3 {
+            color: hsla(0, 10%, 92%, 0.907);
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 16px;
+            color: gray;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px 0 10px;
+            border: 1px solid #f7f6f6;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background: #007BFF;
+            color: rgb(247, 243, 243);
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>W E L C O M E</h1>
+        <h1>AUTOMATE RESUME ATS</h1>
+        <p>Fill the details</p>
+
+        <form id="resumeForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="linkedin">LinkedIn Profile:</label>
+            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="mobile">Mobile No:</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+
+            <label for="resume">Resume Attach:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            <p id="fileName"></p>
+
+            <button type="submit" onclick="openNewPage()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("resume").addEventListener("change", function() {
+            let file = this.files[0];
+            if (file) {
+                document.getElementById("fileName").textContent = "Selected File: " + file.name;
+            }
+        });
+
+        document.getElementById("resumeForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+            let file = document.getElementById("resume").files[0];
+
+            if (name === "" || email === "" || mobile === "" || !file) {
+                alert("Please fill out all fields and attach a resume.");
+                return;
+            }
+
+            alert("Resume submitted successfully!");
+            this.reset(); // Clear the form after submission
+            document.getElementById("fileName").textContent = ""; // Reset file name display
+        });
+    </script>
+
+</body>
+</html>
